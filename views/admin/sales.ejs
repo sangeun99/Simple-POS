@@ -1,0 +1,110 @@
+<%- include('../header'); -%>
+#container { 
+    max-width : 550px;   
+    margin : 60px auto;    
+}
+
+table {
+    width: 100%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+}
+
+th, td {
+    border-bottom: 1px solid #444444;
+    padding : 3px;
+    text-align : center;
+    vertical-align : middle
+}
+
+td {
+    padding: 10px 3px 10px 3px;
+}
+
+<%- include('header'); -%>
+
+<div id = "container">    
+    <div id = "ordertoday">
+        <h4> 오늘의 주문 내역 </h4>
+        <table>
+            <colgroup>
+                    <col width='50'><col width='180'><col width='80'><col width='50'><col width='100'><col width='200'>        
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>고객</th>
+                    <th>메뉴</th>
+                    <th>가격</th>
+                    <th>수량</th>
+                    <th>총액</th>
+                    <th>시간</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(i = 0; i < list[0].length; i++) { %>
+                    <tr>
+                        <td><%=list[0][i].custid %></td>
+                        <td><%=list[0][i].menuname %></td>
+                        <td><%=list[0][i].price %></td>
+                        <td><%=list[0][i].quantity %></td>
+                        <td><%=list[0][i].totalprice %></td>
+                        <td><%=list[0][i].ot %></td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    </div>
+    
+    <div id = "sales_day">
+        <h4> 역대 일 매출 </h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>날짜</th>
+                    <th>총액</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(i = 0; i < list[2].length; i++) { %>
+                    <tr></tr>
+                        <td><%=list[2][i].dates %></td>
+                        <td><%=list[2][i].totalsales %></td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <div id = "order50">
+        <h4> 최근 50건의 주문 내역 </h4>
+        <table>
+            <colgroup>
+                    <col width='50'><col width='180'><col width='80'><col width='50'><col width='100'><col width='200'>        
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>고객</th>
+                    <th>메뉴</th>
+                    <th>가격</th>
+                    <th>수량</th>
+                    <th>총액</th>
+                    <th>시간</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(i = 0; i < Math.min(list[1].length, 50); i++) { %>
+                    <tr>
+                        <td><%=list[1][i].custid %></td>
+                        <td><%=list[1][i].menuname %></td>
+                        <td><%=list[1][i].price %></td>
+                        <td><%=list[1][i].quantity %></td>
+                        <td><%=list[1][i].totalprice %></td>
+                        <td><%=list[1][i].ot %></td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('../footer'); -%>

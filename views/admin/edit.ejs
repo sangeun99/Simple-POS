@@ -1,0 +1,59 @@
+<%- include('../header'); -%>
+#container {
+    width : 500px;
+    padding : 25px;
+    height : 260px;
+    margin : 80px auto;    
+    border: 1px solid slategray;
+    border-radius : 5px;
+    font-size : 15px  
+}
+
+div#container li {
+    list-style:none;
+    padding : 10px;
+    float : right;
+}
+
+div#inputbox {
+    width : 340px;
+}
+
+input {
+    width : 200px;
+}
+
+select {
+    font-size : 13px;
+    width : 200px;
+    padding : 3px;
+}
+
+<%- include('header'); -%>
+
+<div id="container">
+    <form action="/admin/menu/editing/<%=list[0].menuid %>" method="post">
+        <div id="inputbox">
+            <li>종류 * <input type="text" name="Typeid" size="20" value = "<%=list[0].typeid %>" disabled/></li>
+            <li>이름 * <input type="text" name="menuName" size="20" value = "<%=list[0].menuname %>" ></li>
+            <li>가격 * <input type="number" name="Price" size="20" value = "<%=list[0].price %>"></li>
+            <li>
+                <% if(list[0].menustate == '0') { %>
+                    상태 <select name="menuState" size="1">
+                        <option value="1">준비 가능</option>
+                        <option value="0" selected>불가능</option>
+                    </select>
+                <% } else { %>
+                    상태 <select name="menuState" size="1">
+                        <option value="1" selected>준비 가능</option>
+                        <option value="0">불가능</option>
+                    </select>
+                <% } %>
+                </li>
+            <li>이미지 URL <input type="text" name="Image" size="20" value = "<%=list[0].imageurl %>"></li>
+        </div>
+        <button type="submit" style="float : right">등록하기</button>
+    </form>
+</div>
+
+<%- include('../footer'); -%>

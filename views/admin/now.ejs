@@ -1,0 +1,79 @@
+<%- include('../header'); -%>
+#container { 
+    max-width : 550px;   
+    margin : 0px auto;    
+}
+
+div#state{
+    text-align : center;
+    padding : 10px;
+}
+
+div#state ul {
+    margin : 0px auto;
+    padding : 20px
+}
+
+div#state li {
+    display : inline;
+    padding : 10px;
+    font-size : 18px
+}
+
+table {
+    width: 100%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+}
+
+th, td {
+    border-bottom: 1px solid #444444;
+    padding: 3px;
+    text-align : center;
+    vertical-align : middle
+}
+
+<%- include('header'); -%>
+
+<div id = "container">
+    <div id="state">
+        <ul>
+            <li><a href="/admin/now/0">준비 중</a> </li>
+            <li><a href="/admin/now/1">준비 완료</a> </li>
+        </ul>
+    </div>
+    
+    <table>
+        <colgroup>
+            <col width='50'><col width='50'><col width='150'><col width='50'><col width='150'><col width='80'>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>고객</th>
+                <th>메뉴</th>
+                <th>수량</th>
+                <th>주문 시간</th>
+                <th>완료</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(i = 0; i < list.length; i++) { %>
+                <tr>
+                    <td><%=i+1 %></td>
+                    <td><%=list[i].custid %></td>
+                    <td><%=list[i].menuname %></td>
+                    <td><%=list[i].quantity %></td>
+                    <td><%=list[i].ot %></td>
+                    <td> 
+                        <form action="/admin/now/<%=list[i].custid %>/<%=list[i].menuid %>" method="post">
+                            <button type="submit">완료</button>
+                        </form>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('../footer'); -%>

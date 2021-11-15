@@ -1,0 +1,109 @@
+<%- include('../header'); -%>
+
+#container { 
+    width : 500px;
+    padding : 25px;
+    height : 260px;
+    margin : 80px auto;    
+    border: 1px solid slategray;
+    border-radius : 5px;
+}
+
+span {
+    display:inline-block;
+    width : 250px;
+    height : 260px;
+    margin : 0 auto;
+    float : left;    
+}
+
+ul {
+    text-align : center;
+    padding : 0px 25px 0px 25px
+}
+
+ul#name {
+    color : midnightblue; 
+    font-weight : bold
+}
+
+input {
+    font-size : 20px;
+}
+
+button {
+    font-size : 16px;
+}
+
+input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+  
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.number-input {
+    display: inline-flex;
+}
+
+.number-input button.plus {
+    color :midnightblue;
+    background-color :whitesmoke;
+    font-size: 30px;
+    transform: translate(-15%, 0%);
+}
+
+.number-input button.minus {
+    color :midnightblue;
+    background-color :whitesmoke;
+    font-size: 30px;
+    transform: translate(25%, 0%);
+}
+  
+.number-input button.order {
+    transform: translate(-60%, 180%); // 오른쪽으로~ 밑으로~
+}
+
+.number-input input[type=number] {
+    font-family: sans-serif;
+    max-width: 5rem;
+    padding: .5rem;
+    border: solid #ddd;
+    font-size: 16px;
+    height: 3rem;
+    text-align: center;
+    transform: translate(55%, 0%);
+}
+
+img {
+    width : 250px;
+    height : 260px;
+}
+
+<%- include('header'); -%>
+
+<div id = "container">
+    <span class = "image">
+        <img src="https://image.istarbucks.co.kr/upload/store/skuimg<%=list[0].imageurl%>" alt="<%=list[0].menuname %>" title="<%=list[0].menuname %>">
+    </span>
+    <span class = "info">
+        <ul id = "name"><%=list[0].menuname %></ul>
+        <ul><%=list[0].price %>₩</ul>
+        <ul>
+            <div class="number-input">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus">-</button>
+                <form id = "orderform" action="/menu/order/<%=list[0].menuid%>" method="post">
+                    <input name = "quantity" class="quantity" min="1" max = "20" value="1" type="number">
+                    <button type="submit" class="order">ORDER</button>
+                </form>
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">+</button>
+            </div>
+        </ul>        
+    </span>    
+</div>
+
+<%- include('../footer'); -%>

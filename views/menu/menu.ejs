@@ -1,0 +1,73 @@
+<%- include('../header'); -%>
+#container { 
+    max-width : 900px;   
+    margin : 30px auto;    
+    display : grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+span#list {
+    width : 200px;
+    background-color :slategray;
+    font-size : 16px;
+    position : relative;
+}
+
+li {
+    width : 200px;
+    margin : 10px auto;
+    list-style: none;
+    padding-left: 0px;
+    text-align : center;
+}
+
+img {    
+    width : 200px;
+    border-radius : 5px;
+}
+
+img:hover {
+    cursor : pointer;
+    transform : scale(1.1); /* 마우스 오버시 이미지 크기를 1.1 배만큼 확대시킨다. */
+    -o-transform : scale(1.1); 
+    -moz-transform : scale(1.1);
+    -webkit-transform : scale(1.1);
+    transition : transform .35s;  
+    -o-transition : transform .35s;
+    -moz-transition : transform .35s;
+    -webkit-transition : transform .35s;
+}
+
+button#clickarea {
+    background-color: whitesmoke;
+    color : darkslategrey;
+    font-weight : 400;
+    border : 1px;
+    border-color : midnightblue;
+    border-radius: 5px;
+    margin : 0px auto;
+    padding : 5px;
+}
+
+button#clickarea:hover {
+    background-color: whitesmoke;
+}
+
+<%- include('header'); -%>
+
+
+<div id ="container">
+    <% for(i = 0; i < list.length; i++) { %>
+        <form action="/menu/detail/<%=list[i].menuid %>" method="get">
+            <button id ="clickarea" type="submit">
+                <span id = "list">
+                    <li><img src="https://image.istarbucks.co.kr/upload/store/skuimg<%=list[i].imageurl%>" alt="<%=list[i].menuname %>" title="<%=list[i].menuname %>";></li>
+                    <li><%=list[i].menuname %> <%=list[i].price %>₩</li>
+                    </span>
+                </button>
+            </form>
+        <% } %>    
+</div>
+
+
+<%- include('../footer'); -%>
